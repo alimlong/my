@@ -1,0 +1,25 @@
+AC9官方固件结构及改造过程 https://www.right.com.cn/forum/thread-212299-1-1.html
+告诉大家一个小秘密，其实我的官改是开源的 https://www.right.com.cn/forum/forum.php?mod=viewthread&tid=218346
+斐讯K2P金色博通版本开启telnet、固件备份、恢复的方法 https://www.right.com.cn/forum/thread-254919-1-1.html
+交叉编译斐讯全系列产品的应用程序 http://iytc.net/wordpress/?p=4849
+斐讯K2P、K3C固件APP应用定制教程 https://www.right.com.cn/forum/thread-254234-1-1.html
+
+1. 使用binwalk分析固件，binwalk filename
+2. 使用winhex分离出kernel.bin和squashfs固件fs.bin
+3. 解包squashfs文件系统"sudo unsquashfs -d squashfs-root fs.bin"
+4. 修改后打包：
+   sudo ./mksquashfs4 ./squashfs-root ./newsecondchunk.bin -noappend -root-owned -comp xz -b 128k -processors 1
+   ./trx -o new.bin -m 7929856 -f kernel.bin -f newsecondchunk.bin
+
+
+使用的工具
+然后找一个openwrt SDK的trx执行程序，通过此程序可以自动生成trx头文件
+路径SDK/staging_dir/host/bin
+trx
+mksquashfs4
+unsquashfs
+
+利用k2p自动升级升级固件
+1. 运行/usr/root/set_upcheck.sh下载最新固件信息/tmp/checkinfo文件
+2. 修改checkinfo文件固件版本号和固件下载url及md5，md5可用ps工具certutil快速计算
+3. web登陆路由器，进入在线升级---->在线升级
