@@ -1,0 +1,11 @@
+1. 注册github
+2. 生成密钥ssh-keygen -t rsa -C "your_email@email.com"
+3. 打开生成的id_rsa.pub, 复制密钥添加到github SSH key中
+4. 测试是否成功ssh -T git@github.com, 最后出现：You've successfully authenticated, but GitHub does not provide shell access说明已经成功连上github
+5. 设置name和email，git config --global user.name "your name", git config --global user.email "email@email.com"
+6. 创建本地目录，进入目录，克隆仓库git clone https://github.com/xxx/xx.git
+7. 进入克隆仓库目录
+8. 加入文件
+9. git add test.txt
+10. git commit -m "xxx"
+11. git push origin master
