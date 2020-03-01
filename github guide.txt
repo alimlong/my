@@ -3,9 +3,20 @@
 3. 打开生成的id_rsa.pub, 复制密钥添加到github SSH key中
 4. 测试是否成功ssh -T git@github.com, 最后出现：You've successfully authenticated, but GitHub does not provide shell access说明已经成功连上github
 5. 设置name和email，git config --global user.name "your name", git config --global user.email "email@email.com"
-6. 创建本地目录，进入目录，克隆仓库git clone https://github.com/xxx/xx.git
-7. 进入克隆仓库目录
-8. 加入文件
-9. git add test.txt
-10. git commit -m "xxx"
-11. git push origin master
+6. 添加远程库git remote add origin git@github.com:yourName/yourRepo.git
+7. 创建本地目录，进入目录，克隆仓库git clone https://github.com/xxx/xx.git
+8. 进入克隆仓库目录
+9. 加入文件
+10. git add test.txt
+11. git commit -m "xxx"
+12. git push origin master
+
+注意
+warning: LF will be replaced by CRLF in rules/daily.txt.
+The file will have its original line endings in your working directory.
+出现此问题是因为不同操作系统的使用的换行符不同
+git config core.autocrlf
+为true时，Git会将你add的所有文件视为文本问价你，将结尾的CRLF转换为LF，而checkout时会再将文件的LF格式转为CRLF格式。
+为false时，line endings不做任何改变，文本文件保持其原来的样子。
+为input时，add时Git会把CRLF转换为LF，而check时仍旧为LF，所以Windows操作系统不建议设置此值。
+git config --global core.autocrlf false
