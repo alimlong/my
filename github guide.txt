@@ -20,3 +20,5 @@ git config core.autocrlf
 为false时，line endings不做任何改变，文本文件保持其原来的样子。
 为input时，add时Git会把CRLF转换为LF，而check时仍旧为LF，所以Windows操作系统不建议设置此值。
 git config --global core.autocrlf false
+
+设置多个git账号
