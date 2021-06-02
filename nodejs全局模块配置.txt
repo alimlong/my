@@ -1,0 +1,5 @@
+npm全局模块路径设置
+1. 默认windows下全局模块安装在"C:\Users\你的电脑名称\AppData\Roaming\npm"，cache在"C:\Users\你的电脑名称\AppData\Roaming\npm-cache"
+2. 修改全局模块和cache位置，新建"node_global"和"node_cache"两个文件夹
+3. cmd下输入npm config set prefix "D:\Program Files\nodejs\node_global"，npm config set cache "D:\Program Files\nodejs\node_cache"
+4. 系统变量中新建NODE_PATH，值为全局模块安装位置

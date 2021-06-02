@@ -22,3 +22,35 @@ git config core.autocrlf
 git config --global core.autocrlf false
 
 设置多个git账号
+
+sicnan git
+1. 设置用户邮箱和姓名
+git config user.name "alimlong"
+git config user.email "alimlong@scinan.com"
+
+2. git自动加上change-id 
+gitdir=$(git rev-parse --git-dir);scp -p -P 29418 alimlong@10.1.10.62:hooks/commit-msg ${gitdir}/hooks/
+
+3. git add
+git add .       提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+git add -u    提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+git add -A    提交所有变化
+
+4. git commit -m ""
+
+5. git comit --amend
+
+6. 提交到服务器
+git push origin master
+git push origin HEAD:refs/for/master 
+
+分支
+1. git branch   //查看本地分支
+2. git branch -a   //查看所有分支
+3. git branch -r   //查看远程分支
+4. git checkout xxx  //切换分支
+5. git push origin xxx  //提交到指定分支
+6. git merge xxx    //合并xxx到当前分支
+
+7. 查看远程仓库日志
+git log origin/master -n 3

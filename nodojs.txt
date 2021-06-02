@@ -1,0 +1,13 @@
+
+1. glup jenkins
+错误：gulp jenkins[8216]: c:\ws\src\node_contextify.cc:626: Assertion `args[1]->IsString()' failed.
+
+解决办法：
+rm -rf node_modules
+rm -rf package-lock.json
+npm cache clean
+npm install
+
+git自动加上change-id 
+gitdir=$(git rev-parse --git-dir)
+scp -p -P 29418 alimlong@10.1.10.62:hooks/commit-msg ${gitdir}/hooks/
