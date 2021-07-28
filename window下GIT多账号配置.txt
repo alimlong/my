@@ -1,1 +1,2 @@
 https://www.cnblogs.com/popfisher/p/5731232.html
+ssh和git可以使用同一个public key
