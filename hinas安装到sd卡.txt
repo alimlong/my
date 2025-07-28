@@ -1,0 +1,36 @@
+1. 下载usb烧录镜像https://www.ecoo.top/docs/tutorial-basics/s805
+2. 使用balenaEtcher等工具把镜像烧录到U盘或sd卡
+3. 插入玩客云从sd卡启动
+4. /opt下备份出amlogic-backup-32系统盘镜像及busybox.tar.gz
+5. dd if=/dev/mmcblk0p1 of=boot.img备份启动分区
+6. 重新格式化sd卡，创建4个分区，boot(200M), busybox(512M), backup(512M), root(all)
+
+Device         Boot   Start      End  Sectors  Size Id Type
+/dev/mmcblk0p1 *      32768   442367   409600  200M  e W95 FAT16 (LBA)
+/dev/mmcblk0p2       442368  1490943  1048576  512M 83 Linux
+/dev/mmcblk0p3      1490944  2539519  1048576  512M 83 Linux
+/dev/mmcblk0p4      2539520 62333951 59794432 28.5G 83 Linux
+
+7. 设置分区label
+mmcblk0p1    BOOT_EMMC
+mmcblk0p2    ROOT_EMMC
+mmcblk0p3    BACKUP_EMMC
+mmcblk0p4    HINAS_EMMC
+
+fat格式使用：fatlabel /dev/mmcblk0p1 BOOT_EMM，ext4格式：tune2fs -L BOOT_EMMC /dev/mmcblk0p1
+
+格式化mkfs.ext /dev/mmcblk0p3 
+
+8. 恢复boot分区
+dd if=boot.ing of=/dev/mmcblk0p1
+9. 恢复root分区
+dd if=amlogic-backup-32 of=/dev/mmcblk0p4
+10. 挂载/dev/mmcblk0p2 ,解压busybox
+tar -xzvf busybox.tar.gz -C  [mmcblk0p2挂载目录]
+11. blkid查看第4分区的UUID
+12. 挂载boot分区，修改armbianEnv.txt中 rootdev=UUID=6f7637c5-3204-4fe2-aaac-29e4b0b5f0ce
+13. 完成， 启动后默认用户root/ecoo1234
+
+14. 固件下载地址：
+https://www.ecoo.top/download
+更新地址：https://ecoo.top/s805_upgrade.sh
