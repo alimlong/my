@@ -1,0 +1,8 @@
+1. command not found
+apt-get remove command-not-found
+
+2. fw_printenv
+apt install u-boot-tools
+
+3. 修改dtb中mac
+fdt set ethernet0 local-mac-address ${mac_node}
