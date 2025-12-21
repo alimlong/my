@@ -44,3 +44,5 @@ SM1 (S905X3/D3)
 Meson 8 (S805)
 Meson 8b (S802)
 Meson 8m2 (S812)
+
+https://github.com/52571abc/gxl-s905L-B-p211
