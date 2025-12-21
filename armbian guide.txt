@@ -6,3 +6,41 @@ apt install u-boot-tools
 
 3. 修改dtb中mac
 fdt set ethernet0 local-mac-address ${mac_node}
+
+4. mount image
+losetup --find --show --partscan file.img
+
+5. 提取android tdb
+https://7ji.github.io/crack/2023/01/08/decrypt-aml-dtb.html
+adb pull /proc/device-tree .
+dtc -I fs device-tree -o decrypted.dtb
+
+6. hi nas
+https://www.ecoo.top/docs/tutorial-basics/ttl-flash
+
+
+gxbb_p201_1g              S905   ,  S905M
+gxl_p211_1g                S905L  ,  S905M2
+gxl_p212_1g                S905X
+gxl_p231_1g                S905D
+gxlx_p261_1g               S905L2
+gxl_p281_1g                S905W
+gxlx2_p291_1g             S905L3
+gxlx2_p295_1g             S905L3
+g12a_u200                  S905D2               
+g12a_u212_v1           S905L3A/S905L3A-B
+
+
+64位SOC
+
+GXBB (S905)
+GXL (S805X/S905X/D/W/L)
+GXM (S912)
+G12A (S905X2/D2/Y2)
+G12B (S922X/A311D)
+SM1 (S905X3/D3)
+
+32位SOC
+Meson 8 (S805)
+Meson 8b (S802)
+Meson 8m2 (S812)
