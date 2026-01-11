@@ -47,3 +47,17 @@ Meson 8m2 (S812)
 
 https://github.com/52571abc/gxl-s905L-B-p211
 https://www.ecoo.top/download/
+
+wifi driver
+ git clone https://github.com/jwrdegoede/rtl8189ES_linux
+# log setting: https://github.com/ophub/amlogic-s9xxx-armbian/issues/3000
+
+方法一：直接关闭debug，修改CONFIG_RTW_DEBUG属性
+CONFIG_RTW_DEBUG = n
+方法二：降低日志等级，修改CONFIG_RTW_LOG_LEVEL属性(建议修改为0~3)
+CONFIG_RTW_LOG_LEVEL = 4
+
+make -j4 ARCH=arm64 KSRC=/usr/lib/modules/$(uname -r)/build
+cp 8189es.ko /usr/lib/modules/$(uname -r)/kernel/drivers/net/wireless/realtek/
+depmod -a
+modprobe 8189es
