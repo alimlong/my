@@ -45,6 +45,8 @@ Meson 8 (S805)
 Meson 8b (S802)
 Meson 8m2 (S812)
 
+q5 mac: 9C:62:AB:0D:50:7D
+
 https://github.com/52571abc/gxl-s905L-B-p211
 https://www.ecoo.top/download/
 
